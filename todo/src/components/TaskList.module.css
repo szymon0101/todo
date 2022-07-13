@@ -5,11 +5,11 @@
 }
 
 .wrapper{
-    width: min(30rem, 60%);
+    width: min(40rem, calc(80% - 2rem));
     padding: 2rem;
     margin: 3rem 0;
     background-color: #D3D3D3;
-    box-shadow: 2px 2px 15px 2px #d1d1d1;
+    box-shadow: 5px 5px 15px 5px #d1d1d1;
     border: 1px solid #676766;
     border-radius: 5px;
 }
