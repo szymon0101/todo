@@ -12,43 +12,66 @@ const getLocalStorageData = () => {
     }
 }
 
+const initialState = {
+    text: "",
+    done: false
+}
+
 const TaskList = () => {
-    const [newTask, setNewTask] = useState("")
+    const [newTask, setNewTask] = useState(initialState)
     const [tasks, setTasks] = useState(getLocalStorageData())
 
     const handleChange = (e) => {
-        setNewTask(e.target.value)
+        setNewTask({
+            text: e.target.value,
+            done: false
+        })
     }
 
     const addBtn = () => {
-        setTasks([
-            ...tasks, newTask
-        ])
-        setNewTask("")
+        if(newTask.text !== ""){
+            setTasks([
+                ...tasks, newTask
+            ])
+            setNewTask(initialState)
+        }
+    }
+
+    const check = (id) => {
+        const updatedTasks = tasks.map((value, key)=>{
+            if(key === id){
+                value.done = !value.done
+            }
+            return value
+        })
+        setTasks(updatedTasks)
     }
 
     const delBtn = (id) => {
-        const filteredTasks = tasks.filter((value, key) => (
-            key !== id
-        ))
+        const filteredTasks = tasks.filter((value, key) => {
+            return key !== id
+        })
         setTasks(filteredTasks)
     }
 
     useEffect(() => {
         localStorage.setItem('tasks', JSON.stringify(tasks))
-        console.log(tasks)
     },[tasks])
 
     return(
         <div className={TaskListStyle.container}>
             <div className={TaskListStyle.wrapper}>
-                {
-                    tasks.map((value, key) => {
-                        return <Task text={value} del={() => delBtn(key)} key={key} />
-                    })
+                { 
+                    tasks.length ? (
+                        tasks.map((value, key) => {
+                            return <Task text={value.text} check={() => check(key)} del={() => delBtn(key)} done={value.done} key={key} />
+                        })
+                    ) : "tasks list empty"
                 }
-                <input type="text" value={newTask} onChange={e => handleChange(e)} />
-                <button onClick={() => addBtn()}>add</button>
+                <div className={TaskListStyle.createContainer}>
+                    <input type="text" value={newTask.text} onChange={e => handleChange(e)} className={TaskListStyle.input} placeholder="new task"/>
+                    <button onClick={() => addBtn()} className={TaskListStyle.btn}>add new task</button>
+                </div>
             </div>
         </div>
     )

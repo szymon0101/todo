@@ -1,13 +1,10 @@
 .container{
-    width: 100%;
-    height: 4rem;
-    background-color: #D3D3D3;
-    border-width: 0 0 1px 0;
-    border-style: solid;
-    border-color: #676766;
+    width: 100vw;
+    margin: 2rem 0;
     display: flex;
     justify-content: center;
     align-items: center;
-    font-size: 1.3rem;
-    font-weight: 500;
+    font-size: 1.5rem;
+    font-weight: 550;
+    overflow: hidden;
 }

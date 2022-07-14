@@ -5,11 +5,41 @@
 }
 
 .wrapper{
-    width: min(40rem, calc(80% - 2rem));
+    width: min(40rem, calc(80% - 4rem));
     padding: 2rem;
-    margin: 3rem 0;
     background-color: #D3D3D3;
     box-shadow: 5px 5px 15px 5px #d1d1d1;
     border: 1px solid #676766;
     border-radius: 5px;
+}
+
+.createContainer{
+    margin: 2rem 0 0 0;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.input{
+    font-size: 1rem;
+    height: 1rem;
+    width: 50%;
+    padding: 0.5rem;
+    border-radius: 5px;
+    border: 1px solid #676766;
+    background-color: #F2F3F4;
+}
+.input:active{
+    border: #676766;
+}
+
+.btn{
+    width: 9rem;
+    padding: 0.5rem;
+    border-radius: 5px;
+    border: none;
+    background-color: #676766;
+    font-size: 1rem;
+    color: #F2F3F4;
+    cursor: pointer;
 }
